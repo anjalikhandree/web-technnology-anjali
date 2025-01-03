@@ -1,0 +1,216 @@
+<!DOCTYPE html>             
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HOODIES HUB</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0e0; /* Grey background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url(https://tse1.mm.bing.net/th?id=OIP.TDWFDj-cVkp9eKsH4VFDfQHaFL&pid=Api&P=0&h=180);
+            background-size: cover;
+        }
+
+        /* Small Logo - Positioned on top-left */
+        .small-logo {
+            position: absolute;
+            top: 10px; /* Adjust this value to move logo up/down */
+            left: 20px; /* Adjust this value to move logo left/right */
+            height: 40px; /* Adjust size */
+            width: auto;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #b3a661;
+            color: #fff;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Logo on the left in header */
+        header .logo {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            height: 40px; /* Adjust logo size */
+            width: auto;
+            z-index:10;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        <style>
+    /* Navigation Menu */
+    nav {
+        background-color: #17747a;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    /* Navigation Bar - Italic Text */
+    nav a {
+        font-style: italic; /* Italicize the text */
+        color: #b52525; /* Adjust text color if needed */
+        font-size: 1.2rem;
+        margin: 0 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    nav a:hover {
+        color: #00
+    }
+        /* Product Card Image Styles */
+    .products .product-card img {
+        width: 180px; /* Adjusted width */
+        height: 180px; /* Adjusted height */
+        object-fit: cover; /* Ensures the image scales properly */
+        border-radius: 6px; /* Adds rounded corners */
+        margin-bottom: 7px;
+    }
+
+</style>
+
+
+
+        
+    
+</head>
+<body>
+
+    <!-- Small Logo on the Top Left -->
+    <img src="https://img.freepik.com/premium-vector/hh-logo-design_705304-458.jpg" alt="Small Logo" class="small-logo">
+
+    <!-- Header Section -->
+    <header>
+        <!-- Logo on the left in header -->
+        <img src="https://img.freepik.com/premium-vector/hh-logo-design_705304-458.jpg" alt="hoodies Logo" class="logo">
+        <div>
+            <h1>Hoodies HUB</h1>
+            <p>WINTER COLLECTION</p>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Search for hoodies..." id="searchInput">
+        <button onclick="searchFunction()">Search</button>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="terms and condition.html">TERMS AND CONDITION</a> 
+        <a href="login.html">LOGIN</a>
+        <a href="service.html">SERVICE</a>
+        <a href="signup.html">SIGNUP</a>
+    </nav>
+
+    <!-- Product Grid Section -->
+    <section id="products">
+        <h2 class="section-title">WARM COMFORT</h2>
+        <div class="products">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="https://i.etsystatic.com/37795650/r/il/173159/5384620455/il_600x600.5384620455_4ugo.jpg" alt="Watch 1">
+                <h2>HOODIES HUB</h2>
+                <p>timeless style.</p>
+                <div class="price">$18.9</div>
+                <a href="login.html"><button class="buy-now-btn" onclick="showLoginPrompt()">Buy Now</button></a>
+                <button class="add-to-cart-btn" onclick="showLoginPrompt()">Add to Cart</button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="https://i.etsystatic.com/44549252/r/il/130165/5624007732/il_600x600.5624007732_fva0.jpg" alt="Watch 2">
+                <h2>HOODIES HUB</h2>
+                <p>warm winter</p>
+                <div class="price">$1100.99</div>
+                <a href="login.html"><button class="buy-now-btn" onclick="showLoginPrompt()">Buy Now</button></a>
+                <button class="add-to-cart-btn" onclick="showLoginPrompt()">Add to Cart</button>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://i.etsystatic.com/47039484/c/1205/1205/794/388/il/33aa4d/6384513054/il_600x600.6384513054_pjhv.jpg" alt="Watch 3">
+                <h2>HOODIES HUB</h2>
+                <p>essential comfort</p>
+                <div class="price">$1000.99</div>
+                <a href="login.html"><button class="buy-now-btn" onclick="showLoginPrompt()">Buy Now</button></a>
+                <button class="add-to-cart-btn" onclick="showLoginPrompt()">Add to Cart</button>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="https://i.etsystatic.com/38689647/c/1600/1600/121/36/il/cb24d9/6309355151/il_600x600.6309355151_eqyp.jpg" alt="Watch 4">
+                <h2>HOODIES HUB</h2>
+                <p>built for comfort</p>
+                <div class="price">$1200.99</div>
+                <a href="login.html"><button class="buy-now-btn" onclick="showLoginPrompt()">Buy Now</button></a>
+                <button class="add-to-cart-btn" onclick="showLoginPrompt()">Add to Cart</button>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <img src="https://i.etsystatic.com/54806205/c/2400/2400/244/0/il/1b473e/6538656245/il_600x600.6538656245_axhn.jpg" alt="Watch 5">
+                <h2>HOODIES HUB</h2>
+                <p>casual and trendy.</p>
+                <div class="price">$1100.99</div>
+                <a href="login.html"><button class="buy-now-btn" onclick="showLoginPrompt()">Buy Now</button></a>
+                <button class="add-to-cart-btn" onclick="showLoginPrompt()">Add to Cart</button>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <img src="https://i.etsystatic.com/52734361/r/il/503f51/6412982943/il_600x600.6412982943_pzz8.jpg" alt="Watch 6">
+                <h2>HOODIES HUB</h2>
+                <p>luxury and premium</p>
+                <div class="price">$1200.99</div>
+                <a href="login.html"><button class="buy-now-btn" onclick="showLoginPrompt()">Buy Now</button></a>
+                <button class="add-to-cart-btn" onclick="showLoginPrompt()">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript to Handle Cart Actions -->
+    <script>
+        function addToCart(productId) {
+            console.log('Product ' + productId + ' added to cart.');
+            // Further logic to update the cart can be implemented here
+        }
+
+        function showLoginPrompt() {
+            // Show an alert box asking user to login
+            const isLoginConfirmed = confirm("You need to login first. Do you want to go to the login page?");
+            if (isLoginConfirmed) {
+                // If user clicks OK, redirect to the login page
+                window.location.href = 'login.html'; 
+            }
+        }
+    </script>
+
+</body>
+</html>

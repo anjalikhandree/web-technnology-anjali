@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        .cart-item img {
+    width: 60px; /* Change the width to a smaller value */
+    height: 60px; /* Change the height to a smaller value */
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="cart-container">
+        <h2></h2>
+        <div id="cart-items">
+            <!-- Cart items will be added dynamically here -->
+        </div>
+
+        <div id="total-amount" class="total">
+            <!-- Total amount will be displayed here -->
+        </div>
+
+        <div class="cart-footer">
+            
+            
+            <button class="go-back" onclick="goBack()"><a href="myhome.html">Go Back</a></button>
+        </div>
+
+        <div class="payment-form">
+            <h3>Payment Details</h3>
+            <div id="payment-total" class="total-display"></div>
+
+            <div id="amount-box" class="amount-box"></div>
+
+            <form id="payment-form">
+                <input type="text" id="cardholder-name" placeholder="Cardholder Name" required>
+                <input type="text" id="card-number" placeholder="Card Number" required oninput="validateCardNumber(this)">
+                <input type="text" id="expiry-date" placeholder="Expiry Date (MM/YY)" required oninput="validateExpiryDate(this)">
+                <input type="text" id="cvv" placeholder="CVV" required oninput="validateCVV(this)">
+                <button type="button" onclick="makePayment()">Pay Now</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartContainer = document.getElementById("cart-items");
+            let totalAmountElement = document.getElementById("total-amount");
+            let paymentTotalElement = document.getElementById("payment-total");
+            let amountBox = document.getElementById("amount-box");
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+                totalAmountElement.innerHTML = "";
+                paymentTotalElement.innerHTML = "";
+                amountBox.innerHTML = "";
+            } else {
+                cartContainer.innerHTML = "";
+                let totalAmount = 0;
+
+                cart.forEach(item => {
+                    const cartItem = document.createElement("div");
+                    cartItem.classList.add("cart-item");
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <p>${item.name}</p>
+                        <p>$${item.price}</p>
+                    `;
+                    cartContainer.appendChild(cartItem);
+
+                    totalAmount += parseFloat(item.price);
+                });
+
+                totalAmountElement.innerHTML = `Total: $${totalAmount.toFixed(2)}`;
+                paymentTotalElement.innerHTML = `Total Amount to Pay: $${totalAmount.toFixed(2)}`;
+                amountBox.innerHTML = `Amount to Pay: $${totalAmount.toFixed(2)}`;
+            }
+        }
+
+        function proceedToCheckout() {
+            alert("Proceeding to checkout...");
+        }
+
+        function emptyCart() {
+            localStorage.removeItem("cart");
+            loadCart();
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function makePayment() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // Check if the cart is empty
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add items to your cart before proceeding.");
+                return; // Prevent payment from proceeding
+            }
+
+            const name = document.getElementById("cardholder-name").value;
+            const cardNumber = document.getElementById("card-number").value;
+            const expiryDate = document.getElementById("expiry-date").value;
+            const cvv = document.getElementById("cvv").value;
+
+            const currentDate = new Date();
+            const [month, year] = expiryDate.split("/").map(num => parseInt(num));
+            const isValidExpiry = month >= 1 && month <= 12 && (year + 2000 >= currentDate.getFullYear()) && (year + 2000 > currentDate.getFullYear() || month >= (currentDate.getMonth() + 1));
+
+            if (!name) {
+                alert("Please enter the cardholder name.");
+                return;
+            }
+            if (cardNumber.length !== 10) {
+                alert("Card number must be exactly 10 digits.");
+                return;
+            }
+            if (!isValidExpiry) {
+                alert("Expiry date is invalid or has already passed.");
+                return;
+            }
+            if (cvv.length !== 3) {
+                alert("CVV must be exactly 3 digits.");
+                return;
+            }
+
+            alert("Payment successful!");
+            localStorage.removeItem("cart");
+            loadCart();
+        }
+
+        function validateCardNumber(input) {
+            input.value = input.value.replace(/[^0-9]/g, '');  // Remove non-numeric characters
+            if (input.value.length > 10) {
+                input.value = input.value.slice(0, 10); // Limit to 10 digits
+            }
+        }
+
+        window.onload = loadCart;
+    </script>
+</body>
+
+</html>

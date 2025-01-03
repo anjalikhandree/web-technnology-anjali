@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        /* General body styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #cc6c6c;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Cart container */
+        .cart-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Cart item styling */
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .cart-item:hover {
+            background-color: #f1f1f1;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .cart-item p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .cart-item .price {
+            margin-left: auto;
+            font-weight: bold;
+            color: #e91e63;
+        }
+
+        /* Total amount display */
+        .total {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        /* Footer section with buttons */
+        .cart-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 20px;
+        }
+
+        .cart-footer button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+            min-width: 150px;
+        }
+
+        .cart-footer button:hover {
+            transform: scale(1.05);
+        }
+
+        .cart-footer button a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Specific button styles */
+        .go-back {
+            background-color: #3b5998;
+            color: white;
+        }
+
+        .proceed {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .empty-cart {
+            background-color: #f44336;
+            color: white;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cart-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cart-container">
+        <h2>Your Shopping Cart</h2>
+        <div id="cart-items">
+            <!-- Cart items will be added dynamically here -->
+        </div>
+
+        <div id="total-amount" class="total">
+            <!-- Total amount will be displayed here -->
+        </div>
+
+        <div class="cart-footer">
+            <button class="proceed" onclick="proceedToCheckout()"><a href="pay12.html">Proceed to Checkout</a></button>
+            <button class="empty-cart" onclick="emptyCart()">Empty Cart</button>
+            <button class="go-back" onclick="goBack()"><a href="pay10.html">Go Back</a></button>
+        </div>
+    </div>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartContainer = document.getElementById("cart-items");
+            let totalAmountElement = document.getElementById("total-amount");
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+                totalAmountElement.innerHTML = "";
+            } else {
+                cartContainer.innerHTML = "";
+                let totalAmount = 0;
+
+                cart.forEach(item => {
+                    const cartItem = document.createElement("div");
+                    cartItem.classList.add("cart-item");
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div>
+                            <p>${item.name}</p>
+                            <p class="price">$${item.price}</p>
+                        </div>
+                    `;
+                    cartContainer.appendChild(cartItem);
+
+                    totalAmount += parseFloat(item.price);
+                });
+
+                totalAmountElement.innerHTML = `Total: $${totalAmount.toFixed(2)}`;
+            }
+        }
+
+        function proceedToCheckout() {
+            alert("Proceeding to checkout...");
+        }
+
+        function emptyCart() {
+            localStorage.removeItem("cart");
+            loadCart();
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        window.onload = loadCart;
+    </script>
+</body>
+
+</html>
